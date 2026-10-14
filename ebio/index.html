@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>EBIO | Biocosmética Ancestral Ese Eja - Infierno, Madre de Dios</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ebio: {
+              yellow: '#F5B014',
+              'yellow-light': '#FDE68A',
+              red: '#C53030',
+              'red-dark': '#9B1C1C',
+              black: '#121212',
+              charcoal: '#1E1E1E',
+              cream: '#FDFBF7',
+              gold: '#D97706'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Cinzel"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .ese-eja-border {
+      background-image: repeating-linear-gradient(45deg, #121212 0, #121212 8px, #C53030 8px, #C53030 16px, #F5B014 16px, #F5B014 24px);
+      height: 6px;
+    }
+    .lang-active {
+      background-color: #C53030 !important;
+      color: #ffffff !important;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-ebio-cream text-ebio-charcoal font-sans antialiased selection:bg-ebio-yellow selection:text-ebio-black pb-24 md:pb-0">
+
+  <!-- Franja de Patrón Ese Eja Superior -->
+  <div class="ese-eja-border"></div>
+
+  <!-- Barra Superior con Selector de Idioma (ES / EN / FR / 中文) -->
+  <div class="bg-ebio-black text-white text-xs py-2 px-3 sm:px-4">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2 text-[11px] sm:text-xs">
+        <span class="inline-block w-2 h-2 rounded-full bg-ebio-yellow animate-pulse"></span>
+        <span data-i18n="topbar_title">🌿 <strong>Ebio:</strong> Sabiduría botánica de la <strong>Comunidad de Infierno</strong> · Perú</span>
+      </div>
+
+      <!-- Selector de Idiomas -->
+      <div class="flex items-center gap-1 bg-stone-900 border border-stone-700 rounded-full p-0.5 text-[11px]">
+        <button onclick="setLanguage('es')" id="lang-es" class="lang-btn lang-active px-2.5 py-1 rounded-full transition-all">🇵🇪 ES</button>
+        <button onclick="setLanguage('en')" id="lang-en" class="lang-btn px-2.5 py-1 rounded-full hover:text-ebio-yellow transition-all">🇬🇧 EN</button>
+        <button onclick="setLanguage('fr')" id="lang-fr" class="lang-btn px-2.5 py-1 rounded-full hover:text-ebio-yellow transition-all">🇫🇷 FR</button>
+        <button onclick="setLanguage('zh')" id="lang-zh" class="lang-btn px-2.5 py-1 rounded-full hover:text-ebio-yellow transition-all">🇨🇳 中文</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegación Sticky -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 py-3 flex items-center justify-between">
+      
+      <!-- Logo y Nombre -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="assets/logo.jpg" alt="Logo EBIO" class="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full border-2 border-ebio-yellow shadow-md group-hover:scale-105 transition-transform">
+        <div>
+          <span class="text-xl sm:text-2xl font-extrabold tracking-wider text-ebio-black flex items-center gap-1 font-display leading-tight">
+            EBIO <span class="text-ebio-red text-lg">●</span>
+          </span>
+          <p class="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-ebio-red" data-i18n="nav_origin">Infierno · Madre de Dios</p>
+        </div>
+      </a>
+
+      <!-- Menú desktop -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-stone-700">
+        <a href="#productos" class="hover:text-ebio-red transition-colors" data-i18n="nav_products">Productos</a>
+        <a href="#ingredientes" class="hover:text-ebio-red transition-colors" data-i18n="nav_ingredients">Ingredientes Ancestrales</a>
+        <a href="#raices" class="hover:text-ebio-red transition-colors" data-i18n="nav_roots">Identidad Ese Eja</a>
+        <a href="#impacto" class="hover:text-ebio-red transition-colors" data-i18n="nav_impact">Impacto Sostenible</a>
+      </nav>
+
+      <!-- Botón Carrito y WhatsApp -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="toggleCartModal()" class="relative bg-stone-100 hover:bg-stone-200 p-2.5 rounded-full text-stone-800 transition-colors" title="Ver pedido">
+          <i class="fa-solid fa-bag-shopping text-base sm:text-lg"></i>
+          <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-ebio-red text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+        </button>
+        <a href="https://wa.me/51993013417?text=Hola%20EBIO,%20quisiera%20informaci%C3%B3n%20sobre%20sus%20productos" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-full text-xs font-bold shadow-md transition-all">
+          <i class="fa-brands fa-whatsapp text-base"></i> <span data-i18n="nav_whatsapp">WhatsApp (+51 993013417)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-stone-100 via-ebio-cream to-white py-12 sm:py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      
+      <!-- Columna Texto -->
+      <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-ebio-yellow/20 border border-ebio-yellow text-stone-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-ebio-red"></span> <span data-i18n="hero_badge">Cosmovisión Ese Eja · Infierno</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-ebio-black tracking-tight leading-[1.15]" data-i18n="hero_title">
+          El poder regenerador de la <span class="text-ebio-red underline decoration-ebio-yellow decoration-4 underline-offset-8">selva viva</span> en tu piel.
+        </h1>
+
+        <p class="text-base sm:text-lg text-stone-700 leading-relaxed max-w-xl mx-auto lg:mx-0" data-i18n="hero_desc">
+          <strong>EBIO</strong> significa <em>"Selva"</em> o <em>"Naturaleza"</em> en nuestra lengua <strong>Ese Eja</strong>. Elaboramos biocosmética a base de <strong>Sangre de Grado, Capirona y Copaiba</strong> cosechadas por jóvenes de Infierno, Madre de Dios.
+        </p>
+
+        <!-- 3 Pilares móviles -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-3 pt-2 max-w-lg mx-auto lg:mx-0">
+          <div class="bg-white p-2.5 sm:p-3 rounded-xl border-l-4 border-ebio-red shadow-sm text-center">
+            <span class="block text-ebio-red font-bold text-[11px] sm:text-xs uppercase" data-i18n="prop_cicatrizante">Cicatrizante</span>
+            <span class="text-[10px] sm:text-xs text-stone-600" data-i18n="ing_sangre">Sangre de Grado</span>
+          </div>
+          <div class="bg-white p-2.5 sm:p-3 rounded-xl border-l-4 border-ebio-yellow shadow-sm text-center">
+            <span class="block text-ebio-gold font-bold text-[11px] sm:text-xs uppercase" data-i18n="prop_aclarante">Aclarante</span>
+            <span class="text-[10px] sm:text-xs text-stone-600" data-i18n="ing_capirona">Capirona</span>
+          </div>
+          <div class="bg-white p-2.5 sm:p-3 rounded-xl border-l-4 border-ebio-black shadow-sm text-center">
+            <span class="block text-stone-900 font-bold text-[11px] sm:text-xs uppercase" data-i18n="prop_hidratante">Hidratante</span>
+            <span class="text-[10px] sm:text-xs text-stone-600" data-i18n="ing_copaiba">Copaiba</span>
+          </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="pt-3 flex flex-wrap justify-center lg:justify-start gap-3 items-center">
+          <a href="#productos" class="bg-ebio-red hover:bg-ebio-red-dark text-white px-7 py-3 rounded-full font-bold text-sm shadow-lg shadow-ebio-red/30 transition-all flex items-center gap-2">
+            <span data-i18n="btn_explore">Explorar Catálogo</span>
+            <i class="fa-solid fa-arrow-down"></i>
+          </a>
+          <a href="https://wa.me/51993013417?text=Hola%20EBIO,%20quisiera%20hacer%20un%20pedido" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-full font-bold text-sm shadow-md transition-all flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span data-i18n="btn_whatsapp">WhatsApp 993013417</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mockup Logo -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-full max-w-xs sm:max-w-sm">
+          <div class="relative bg-white p-5 sm:p-6 rounded-3xl shadow-xl border-4 border-stone-900 text-center">
+            <div class="h-4 w-full mb-3 rounded flex items-center justify-center text-[10px] font-mono tracking-widest bg-stone-900 text-ebio-yellow">
+              ▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼
+            </div>
+            <img src="assets/logo.jpg" alt="Logo Oficial EBIO" class="w-56 h-56 object-contain mx-auto rounded-2xl">
+            <div class="mt-3 pt-3 border-t border-stone-200">
+              <span class="text-[10px] uppercase font-extrabold text-ebio-red tracking-widest block" data-i18n="badge_official">Identidad Oficial Ese Eja</span>
+              <p class="text-xs font-semibold text-stone-800" data-i18n="badge_subtitle">Jabones y Cremas Hidratantes Corporales</p>
+              <div class="flex items-center justify-center gap-2 mt-1.5">
+                <span class="w-3 h-3 rounded-full bg-ebio-yellow border border-stone-900"></span>
+                <span class="w-3 h-3 rounded-full bg-ebio-red border border-stone-900"></span>
+                <span class="w-3 h-3 rounded-full bg-ebio-black border border-white"></span>
+                <span class="text-[10px] text-stone-500 font-medium" data-i18n="badge_colors">Amarillo · Rojo · Negro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Franja divisoria de trazos Ese Eja -->
+  <div class="bg-ebio-black text-ebio-yellow py-2.5 overflow-hidden select-none">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between text-xs tracking-widest font-mono">
+      <span>/\/\/\/\/\/\/\/\</span>
+      <span class="font-sans font-bold uppercase text-[10px] sm:text-xs text-white" data-i18n="strip_banner">∿∿∿ Líneas Ancestrales Ese Eja · Infierno ∿∿∿</span>
+      <span>|‾|_|‾|_|‾|_|‾|</span>
+    </div>
+  </div>
+
+  <!-- Sección Ingredientes -->
+  <section id="ingredientes" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-ebio-red font-bold text-xs uppercase tracking-widest block mb-1" data-i18n="sec_ing_subtitle">Medicina y Cosmética de la Tierra</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ebio-black" data-i18n="sec_ing_title">Tres guardianes botánicos para tu piel</h2>
+        <p class="text-stone-600 mt-2 text-xs sm:text-sm" data-i18n="sec_ing_desc">Extraídos con respeto ecológico en el bosque de la Comunidad Nativa de Infierno.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Sangre de Grado -->
+        <div class="bg-stone-50 rounded-2xl p-6 border-t-4 border-ebio-red shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-red-100 text-ebio-red flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-droplet"></i>
+          </div>
+          <span class="text-xs font-bold text-ebio-red uppercase" data-i18n="ing1_tag">Resina Sagrada</span>
+          <h3 class="text-lg font-bold text-ebio-black mt-1 mb-2" data-i18n="ing1_name">Sangre de Grado</h3>
+          <p class="text-stone-600 text-xs sm:text-sm leading-relaxed mb-3" data-i18n="ing1_desc">
+            Resina rojiza del árbol <em>Croton lechleri</em>. Crea una barrera protectora, acelera la cicatrización y es el regenerador celular más potente del Amazonas.
+          </p>
+        </div>
+
+        <!-- Capirona -->
+        <div class="bg-stone-50 rounded-2xl p-6 border-t-4 border-ebio-yellow shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-ebio-gold flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-spa"></i>
+          </div>
+          <span class="text-xs font-bold text-ebio-gold uppercase" data-i18n="ing2_tag">Corteza que Muda</span>
+          <h3 class="text-lg font-bold text-ebio-black mt-1 mb-2" data-i18n="ing2_name">Capirona</h3>
+          <p class="text-stone-600 text-xs sm:text-sm leading-relaxed mb-3" data-i18n="ing2_desc">
+            El árbol que renueva su corteza verde y tersa. Aclara manchas provocadas por el sol, unifica el tono de la piel y tonifica el rostro.
+          </p>
+        </div>
+
+        <!-- Copaiba -->
+        <div class="bg-stone-50 rounded-2xl p-6 border-t-4 border-ebio-black shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-stone-200 text-stone-900 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-shield-heart"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-700 uppercase" data-i18n="ing3_tag">Bálsamo del Bosque</span>
+          <h3 class="text-lg font-bold text-ebio-black mt-1 mb-2" data-i18n="ing3_name">Aceite de Copaiba</h3>
+          <p class="text-stone-600 text-xs sm:text-sm leading-relaxed mb-3" data-i18n="ing3_desc">
+            Bálsamo antiinflamatorio y emoliente. Calma la piel irritada, alivia brotes y proporciona una hidratación profunda y sedosa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Catálogo -->
+  <section id="productos" class="py-16 bg-stone-100 border-y border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-ebio-red font-bold text-xs uppercase tracking-widest block mb-1" data-i18n="cat_tag">Cuidado Orgánico</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-ebio-black" data-i18n="cat_title">Catálogo Artesanal de Ebio</h2>
+          <p class="text-stone-600 text-xs sm:text-sm mt-1" data-i18n="cat_subtitle">Selecciona tus productos para enviar tu pedido directo al WhatsApp oficial.</p>
+        </div>
+      </div>
+
+      <!-- Cuadrícula de Productos -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- P1: Sangre de Grado -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-stone-200 flex flex-col">
+          <div class="h-44 bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center p-4 relative">
+            <span class="absolute top-3 left-3 bg-ebio-red text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" data-i18n="p1_badge">Regenerante</span>
+            <div class="w-28 h-28 rounded-2xl bg-white shadow-sm flex flex-col items-center justify-center border border-red-200 text-center p-2">
+              <i class="fa-solid fa-soap text-3xl text-ebio-red mb-1"></i>
+              <span class="text-[11px] font-bold text-stone-800" data-i18n="p1_type">Jabón Botánico</span>
+              <span class="text-[10px] text-ebio-red font-medium">100g</span>
+            </div>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-stone-900 text-base" data-i18n="p1_name">Jabón Sangre de Grado</h3>
+              <p class="text-xs text-stone-500 mt-1" data-i18n="p1_desc">Para piel mixta o con acné. Limpieza profunda y regeneración celular.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+              <span class="text-lg font-extrabold text-ebio-black">S/ 18.00</span>
+              <button onclick="addToCart(currentLangData.p1_name, 18.00)" class="bg-ebio-black hover:bg-ebio-red text-white px-3 py-1.5 rounded-full text-xs font-bold transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-plus"></i> <span data-i18n="btn_add">Agregar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- P2: Capirona -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-stone-200 flex flex-col">
+          <div class="h-44 bg-gradient-to-br from-amber-50 to-yellow-50 flex items-center justify-center p-4 relative">
+            <span class="absolute top-3 left-3 bg-ebio-yellow text-stone-900 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" data-i18n="p2_badge">Aclarante</span>
+            <div class="w-28 h-28 rounded-2xl bg-white shadow-sm flex flex-col items-center justify-center border border-amber-200 text-center p-2">
+              <i class="fa-solid fa-soap text-3xl text-amber-500 mb-1"></i>
+              <span class="text-[11px] font-bold text-stone-800" data-i18n="p2_type">Jabón Botánico</span>
+              <span class="text-[10px] text-amber-600 font-medium">100g</span>
+            </div>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-stone-900 text-base" data-i18n="p2_name">Jabón Facial Capirona</h3>
+              <p class="text-xs text-stone-500 mt-1" data-i18n="p2_desc">Atenúa manchitas del sol, tonifica y aporta luminosidad a la piel.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+              <span class="text-lg font-extrabold text-ebio-black">S/ 18.00</span>
+              <button onclick="addToCart(currentLangData.p2_name, 18.00)" class="bg-ebio-black hover:bg-ebio-yellow hover:text-black text-white px-3 py-1.5 rounded-full text-xs font-bold transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-plus"></i> <span data-i18n="btn_add">Agregar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- P3: Crema Copaiba -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-stone-200 flex flex-col">
+          <div class="h-44 bg-gradient-to-br from-stone-100 to-emerald-50 flex items-center justify-center p-4 relative">
+            <span class="absolute top-3 left-3 bg-stone-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" data-i18n="p3_badge">Hidratación</span>
+            <div class="w-28 h-28 rounded-2xl bg-white shadow-sm flex flex-col items-center justify-center border border-stone-300 text-center p-2">
+              <i class="fa-solid fa-pump-soap text-3xl text-stone-800 mb-1"></i>
+              <span class="text-[11px] font-bold text-stone-800" data-i18n="p3_type">Crema Corporal</span>
+              <span class="text-[10px] text-stone-500 font-medium">200ml</span>
+            </div>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-stone-900 text-base" data-i18n="p3_name">Crema Corporal Copaiba</h3>
+              <p class="text-xs text-stone-500 mt-1" data-i18n="p3_desc">Hidratación profunda no grasa que calma y suaviza la piel durante el día.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+              <span class="text-lg font-extrabold text-ebio-black">S/ 32.00</span>
+              <button onclick="addToCart(currentLangData.p3_name, 32.00)" class="bg-ebio-black hover:bg-stone-700 text-white px-3 py-1.5 rounded-full text-xs font-bold transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-plus"></i> <span data-i18n="btn_add">Agregar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- P4: Pack Selva Viva -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all border-2 border-ebio-yellow flex flex-col relative">
+          <div class="absolute top-0 right-0 bg-ebio-red text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-bl-lg uppercase" data-i18n="p4_badge">
+            Recomendado
+          </div>
+          <div class="h-44 bg-gradient-to-br from-yellow-100 via-amber-50 to-red-50 flex items-center justify-center p-4">
+            <div class="w-28 h-28 rounded-2xl bg-white shadow-sm flex flex-col items-center justify-center border border-amber-300 text-center p-2">
+              <i class="fa-solid fa-gift text-3xl text-ebio-red mb-1"></i>
+              <span class="text-[11px] font-bold text-stone-900" data-i18n="p4_type">Pack Dúo</span>
+              <span class="text-[10px] text-ebio-red font-bold" data-i18n="p4_saving">Ahorra S/ 5</span>
+            </div>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-stone-900 text-base" data-i18n="p4_name">Pack Selva Viva</h3>
+              <p class="text-xs text-stone-500 mt-1" data-i18n="p4_desc">1 Jabón a elección (Sangre de Grado o Capirona) + 1 Crema de Copaiba 200ml.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-stone-400 line-through">S/ 50.00</span>
+                <span class="text-lg font-extrabold text-ebio-red block leading-tight">S/ 45.00</span>
+              </div>
+              <button onclick="addToCart(currentLangData.p4_name, 45.00)" class="bg-ebio-red hover:bg-ebio-red-dark text-white px-3 py-1.5 rounded-full text-xs font-bold transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-plus"></i> <span data-i18n="btn_add">Agregar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banner WhatsApp Directo -->
+      <div class="mt-10 bg-ebio-black text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="text-center sm:text-left space-y-1">
+          <span class="text-xs font-bold text-ebio-yellow tracking-widest uppercase" data-i18n="banner_wa_title">Atención Personalizada</span>
+          <h3 class="text-xl sm:text-2xl font-bold" data-i18n="banner_wa_sub">¿Preguntas sobre envíos o pedidos al por mayor?</h3>
+          <p class="text-stone-300 text-xs sm:text-sm" data-i18n="banner_wa_desc">Escríbenos directamente a nuestro WhatsApp oficial: <strong>+51 993 013 417</strong>.</p>
+        </div>
+        <a href="https://wa.me/51993013417?text=Hola%20EBIO,%20quisiera%20hacer%20una%20consulta" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-full text-xs sm:text-sm whitespace-nowrap shadow-lg flex items-center gap-2">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span data-i18n="btn_chat_wa">Escribir al 993013417</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sección Raíces Ese Eja -->
+  <section id="raices" class="py-16 bg-stone-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div class="space-y-4">
+        <div class="inline-flex items-center gap-2 bg-stone-800 text-ebio-yellow px-3 py-1 rounded-full text-xs font-bold uppercase border border-stone-700">
+          <span class="w-2 h-2 rounded-full bg-ebio-red"></span> <span data-i18n="roots_badge">Infierno · Río Tambopata</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold" data-i18n="roots_title">Ebio: El espíritu del bosque Ese Eja</h2>
+        <p class="text-stone-300 text-xs sm:text-sm leading-relaxed" data-i18n="roots_p1">
+          En la Comunidad Nativa de Infierno, el pueblo <strong>Ese Eja</strong> convive en armonía con la selva. Nuestros colores y trazos no son adornos: son historias vivas.
+        </p>
+        <p class="text-stone-300 text-xs sm:text-sm leading-relaxed" data-i18n="roots_p2">
+          <strong>Amarillo</strong> es la luz del dosel y la corteza solar; <strong>Rojo</strong> es la resina viva que sana; y el <strong>Negro</strong> representa las líneas de los ríos y caminos que trazaron nuestros ancestros.
+        </p>
+      </div>
+
+      <div class="bg-stone-800 p-6 rounded-3xl border border-stone-700 space-y-4 text-center">
+        <span class="text-xs font-bold text-ebio-yellow uppercase tracking-wider block" data-i18n="roots_box_title">Trazos Geométricos de Nuestra Identidad</span>
+        <div class="space-y-3 bg-stone-950 p-4 rounded-2xl text-left text-xs font-mono">
+          <div>
+            <span class="text-stone-400 block mb-0.5" data-i18n="trace1">1. Zigzag (Camino y Agilidad):</span>
+            <span class="text-ebio-yellow font-bold text-sm tracking-widest">/\/\/\/\/\/\/\/\/\/\</span>
+          </div>
+          <div>
+            <span class="text-stone-400 block mb-0.5" data-i18n="trace2">2. Ondulado (El Río Tambopata):</span>
+            <span class="text-ebio-red font-bold text-base tracking-widest">∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿</span>
+          </div>
+          <div>
+            <span class="text-stone-400 block mb-0.5" data-i18n="trace3">3. Almenas (Unión Comunitaria):</span>
+            <span class="text-white font-bold text-sm tracking-widest">|‾|_|‾|_|‾|_|‾|_|</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-ebio-black text-white pt-10 pb-6 border-t-4 border-ebio-yellow text-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+      <div>
+        <span class="text-xl font-bold font-display text-white">EBIO</span>
+        <p class="text-stone-400 text-xs mt-1" data-i18n="footer_desc">Biocosmética natural de la Comunidad Nativa de Infierno, Madre de Dios, Perú.</p>
+      </div>
+      <div>
+        <h5 class="font-bold text-ebio-yellow uppercase mb-2" data-i18n="footer_contact">Contacto Oficial</h5>
+        <p class="text-stone-300">📱 WhatsApp: <a href="https://wa.me/51993013417" class="underline hover:text-white">+51 993 013 417</a></p>
+        <p class="text-stone-400 mt-1">📍 Infierno, Tambopata, Madre de Dios</p>
+      </div>
+      <div>
+        <h5 class="font-bold text-ebio-yellow uppercase mb-2" data-i18n="footer_nav">Otros Sitios</h5>
+        <a href="../nii-meken/index.html" class="inline-block bg-stone-800 hover:bg-stone-700 text-stone-200 px-3 py-1.5 rounded-lg text-xs transition-colors">
+          👉 Ver Nii Meken (Tres Islas)
+        </a>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 text-center text-stone-500 pt-4 border-t border-stone-800">
+      © 2026 EBIO · Comunidad de Infierno · Madre de Dios
+    </div>
+  </footer>
+
+  <!-- Modal Carrito WhatsApp -->
+  <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-stone-200">
+        <h3 class="font-bold text-base text-ebio-black flex items-center gap-2">
+          <i class="fa-solid fa-basket-shopping text-ebio-red"></i> <span data-i18n="modal_title">Tu Canasta EBIO</span>
+        </h3>
+        <button onclick="toggleCartModal()" class="text-stone-400 hover:text-stone-700 text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="cartItemsContainer" class="py-3 space-y-2 overflow-y-auto flex-1 min-h-[120px]">
+        <p class="text-center text-stone-400 text-xs py-6" data-i18n="cart_empty">Tu canasta está vacía. ¡Agrega productos desde el catálogo!</p>
+      </div>
+
+      <div class="pt-3 border-t border-stone-200 space-y-3">
+        <div class="flex items-center justify-between text-sm font-extrabold text-stone-900">
+          <span data-i18n="cart_total">Total:</span>
+          <span id="cartTotalText" class="text-lg text-ebio-red">S/ 0.00</span>
+        </div>
+
+        <button onclick="sendOrderToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-full text-xs flex items-center justify-center gap-2 shadow-md transition-colors">
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span data-i18n="btn_send_wa">Pedir por WhatsApp (993013417)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón Flotante Fijo en Móvil -->
+  <button onclick="toggleCartModal()" class="fixed bottom-4 right-4 z-40 bg-ebio-red text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center">
+    <i class="fa-solid fa-bag-shopping text-lg"></i>
+    <span id="floatingBadge" class="absolute -top-1 -right-1 bg-ebio-yellow text-ebio-black font-extrabold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+  </button>
+
+  <!-- Diccionario Multi-idioma (ES, EN, FR, ZH) -->
+  <script>
+    const translations = {
+      es: {
+        topbar_title: '🌿 <strong>Ebio:</strong> Sabiduría botánica de la <strong>Comunidad de Infierno</strong> · Perú',
+        nav_origin: 'Infierno · Madre de Dios',
+        nav_products: 'Productos',
+        nav_ingredients: 'Ingredientes',
+        nav_roots: 'Identidad Ese Eja',
+        nav_impact: 'Sostenibilidad',
+        nav_whatsapp: 'WhatsApp (+51 993013417)',
+        hero_badge: 'Cosmovisión Ese Eja · Infierno',
+        hero_title: 'El poder regenerador de la <span class="text-ebio-red underline decoration-ebio-yellow decoration-4 underline-offset-8">selva viva</span> en tu piel.',
+        hero_desc: '<strong>EBIO</strong> significa <em>"Selva"</em> o <em>"Naturaleza"</em> en nuestra lengua <strong>Ese Eja</strong>. Elaboramos biocosmética a base de <strong>Sangre de Grado, Capirona y Copaiba</strong> cosechadas por jóvenes de Infierno, Madre de Dios.',
+        prop_cicatrizante: 'Cicatrizante',
+        ing_sangre: 'Sangre de Grado',
+        prop_aclarante: 'Aclarante',
+        ing_capirona: 'Capirona',
+        prop_hidratante: 'Hidratante',
+        ing_copaiba: 'Copaiba',
+        btn_explore: 'Explorar Catálogo',
+        btn_whatsapp: 'WhatsApp 993013417',
+        badge_official: 'Identidad Oficial Ese Eja',
+        badge_subtitle: 'Jabones y Cremas Hidratantes Corporales',
+        badge_colors: 'Amarillo · Rojo · Negro',
+        strip_banner: '∿∿∿ Líneas Ancestrales Ese Eja · Infierno ∿∿∿',
+        sec_ing_subtitle: 'Medicina y Cosmética de la Tierra',
+        sec_ing_title: 'Tres guardianes botánicos para tu piel',
+        sec_ing_desc: 'Extraídos con respeto ecológico en el bosque de la Comunidad Nativa de Infierno.',
+        ing1_tag: 'Resina Sagrada',
+        ing1_name: 'Sangre de Grado',
+        ing1_desc: 'Resina rojiza del árbol Croton lechleri. Crea una barrera protectora, acelera la cicatrización y es el regenerador celular más potente del Amazonas.',
+        ing2_tag: 'Corteza que Muda',
+        ing2_name: 'Capirona',
+        ing2_desc: 'El árbol que renueva su corteza verde y tersa. Aclara manchas provocadas por el sol, unifica el tono de la piel y tonifica el rostro.',
+        ing3_tag: 'Bálsamo del Bosque',
+        ing3_name: 'Aceite de Copaiba',
+        ing3_desc: 'Bálsamo antiinflamatorio y emoliente. Calma la piel irritada, alivia brotes y proporciona una hidratación profunda y sedosa.',
+        cat_tag: 'Cuidado Orgánico',
+        cat_title: 'Catálogo Artesanal de Ebio',
+        cat_subtitle: 'Selecciona tus productos para enviar tu pedido directo al WhatsApp oficial.',
+        btn_add: 'Agregar',
+        p1_badge: 'Regenerante',
+        p1_type: 'Jabón Botánico',
+        p1_name: 'Jabón Sangre de Grado (100g)',
+        p1_desc: 'Para piel mixta o con acné. Limpieza profunda y regeneración celular.',
+        p2_badge: 'Aclarante',
+        p2_type: 'Jabón Botánico',
+        p2_name: 'Jabón Facial Capirona (100g)',
+        p2_desc: 'Atenúa manchitas del sol, tonifica y aporta luminosidad a la piel.',
+        p3_badge: 'Hidratación',
+        p3_type: 'Crema Corporal',
+        p3_name: 'Crema Corporal Copaiba (200ml)',
+        p3_desc: 'Hidratación profunda no grasa que calma y suaviza la piel durante el día.',
+        p4_badge: 'Recomendado',
+        p4_type: 'Pack Dúo',
+        p4_saving: 'Ahorra S/ 5',
+        p4_name: 'Pack Selva Viva (Jabón + Crema)',
+        p4_desc: '1 Jabón a elección (Sangre de Grado o Capirona) + 1 Crema de Copaiba 200ml.',
+        banner_wa_title: 'Atención Personalizada',
+        banner_wa_sub: '¿Preguntas sobre envíos o pedidos al por mayor?',
+        banner_wa_desc: 'Escríbenos directamente a nuestro WhatsApp oficial: +51 993 013 417.',
+        btn_chat_wa: 'Escribir al 993013417',
+        roots_badge: 'Infierno · Río Tambopata',
+        roots_title: 'Ebio: El espíritu del bosque Ese Eja',
+        roots_p1: 'En la Comunidad Nativa de Infierno, el pueblo Ese Eja convive en armonía con la selva. Nuestros colores y trazos no son adornos: son historias vivas.',
+        roots_p2: 'Amarillo es la luz del dosel y la corteza solar; Rojo es la resina viva que sana; y el Negro representa las líneas de los ríos y caminos.',
+        roots_box_title: 'Trazos Geométricos de Nuestra Identidad',
+        trace1: '1. Zigzag (Camino y Agilidad):',
+        trace2: '2. Ondulado (El Río Tambopata):',
+        trace3: '3. Almenas (Unión Comunitaria):',
+        footer_desc: 'Biocosmética natural de la Comunidad Nativa de Infierno, Madre de Dios, Perú.',
+        footer_contact: 'Contacto Oficial',
+        footer_nav: 'Otros Sitios',
+        modal_title: 'Tu Canasta EBIO',
+        cart_empty: 'Tu canasta está vacía. ¡Agrega productos desde el catálogo!',
+        cart_total: 'Total Estimado:',
+        btn_send_wa: 'Pedir por WhatsApp (993013417)',
+        toast_added: '¡Producto agregado!',
+        wa_greeting: '¡Hola equipo de EBIO (Infierno)! Deseo pedir estos productos naturales:'
+      },
+      en: {
+        topbar_title: '🌿 <strong>Ebio:</strong> Botanical wisdom from the <strong>Infierno Indigenous Community</strong> · Peru',
+        nav_origin: 'Infierno · Madre de Dios',
+        nav_products: 'Products',
+        nav_ingredients: 'Ingredients',
+        nav_roots: 'Ese Eja Heritage',
+        nav_impact: 'Sustainability',
+        nav_whatsapp: 'WhatsApp (+51 993013417)',
+        hero_badge: 'Ese Eja Indigenous Wisdom · Infierno',
+        hero_title: 'The regenerating power of the <span class="text-ebio-red underline decoration-ebio-yellow decoration-4 underline-offset-8">living rainforest</span> on your skin.',
+        hero_desc: '<strong>EBIO</strong> means <em>"Rainforest"</em> or <em>"Nature"</em> in our native <strong>Ese Eja</strong> language. We handcraft botanical skincare using Dragon\'s Blood resin, Capirona bark, and Copaiba oil harvested sustainably in Infierno.',
+        prop_cicatrizante: 'Healing & Cell Renewal',
+        ing_sangre: 'Dragon\'s Blood',
+        prop_aclarante: 'Brightening & Toning',
+        ing_capirona: 'Capirona Bark',
+        prop_hidratante: 'Deep Moisture',
+        ing_copaiba: 'Copaiba Balsam',
+        btn_explore: 'Explore Catalog',
+        btn_whatsapp: 'WhatsApp +51 993013417',
+        badge_official: 'Official Ese Eja Identity',
+        badge_subtitle: 'Artisanal Soaps & Moisturizing Creams',
+        badge_colors: 'Yellow · Red · Black',
+        strip_banner: '∿∿∿ Sacred Ese Eja Ancestral Patterns · Infierno ∿∿∿',
+        sec_ing_subtitle: 'Medicine & Cosmetics of the Earth',
+        sec_ing_title: 'Three botanical guardians for your skin',
+        sec_ing_desc: 'Harvested with eco-friendly methods in the primary rainforest of Infierno Native Community.',
+        ing1_tag: 'Sacred Tree Resin',
+        ing1_name: 'Dragon\'s Blood (Croton lechleri)',
+        ing1_desc: 'Red resin known as the Amazon\'s liquid bandage. It creates a breathable shield, boosts collagen, and speeds up cellular rejuvenation.',
+        ing2_tag: 'Shedding Bark Tree',
+        ing2_name: 'Capirona Bark',
+        ing2_desc: 'The tree that perpetually renews its smooth green bark. It fades sun spots, balances uneven pigmentation, and firms the skin.',
+        ing3_tag: 'Forest Elixir',
+        ing3_name: 'Copaiba Essential Oil',
+        ing3_desc: 'Rich soothing balm tapped without harming the tree. Calms irritation, soothes sensitivity, and delivers lasting velvety hydration.',
+        cat_tag: 'Organic Skincare',
+        cat_title: 'Ebio Artisanal Catalog',
+        cat_subtitle: 'Choose your items to send your direct order to our official WhatsApp.',
+        btn_add: 'Add to Cart',
+        p1_badge: 'Regenerating',
+        p1_type: 'Botanical Soap',
+        p1_name: 'Dragon\'s Blood Soap (100g)',
+        p1_desc: 'Ideal for combination or acne-prone skin. Deep purification and natural skin recovery.',
+        p2_badge: 'Brightening',
+        p2_type: 'Botanical Soap',
+        p2_name: 'Capirona Facial Soap (100g)',
+        p2_desc: 'Fades blemishes, restores natural glow, and leaves skin refreshed and toned.',
+        p3_badge: 'Deep Hydration',
+        p3_type: 'Body Cream',
+        p3_name: 'Copaiba Body Cream (200ml)',
+        p3_desc: 'Non-greasy nourishing cream with pure copaiba oil that relieves dryness all day.',
+        p4_badge: 'Best Value',
+        p4_type: 'Duo Gift Pack',
+        p4_saving: 'Save S/ 5',
+        p4_name: 'Living Forest Wellness Pack',
+        p4_desc: 'Includes 1 Artisan Soap of choice (Dragon\'s Blood or Capirona) + 1 Copaiba Cream 200ml.',
+        banner_wa_title: 'Personalized Support',
+        banner_wa_sub: 'Looking for shipping or bulk wholesale orders?',
+        banner_wa_desc: 'Contact our community team directly on WhatsApp: +51 993 013 417.',
+        btn_chat_wa: 'Chat on WhatsApp',
+        roots_badge: 'Infierno · Tambopata River',
+        roots_title: 'Ebio: The living heartbeat of the Ese Eja forest',
+        roots_p1: 'In the Infierno Indigenous Community, the Ese Eja people live in sacred reciprocity with nature. Our geometry and colors are lived ancestral memory.',
+        roots_p2: 'Yellow symbolizes the forest canopy and sunlight; Red honors healing tree sap; Black traces the winding Amazon rivers and sacred paths.',
+        roots_box_title: 'Geometric Patterns of Our Identity',
+        trace1: '1. Zigzag (Agility and Rainforest Trails):',
+        trace2: '2. Serpentine Wave (The Tambopata River):',
+        trace3: '3. Stepped Frets (Community Unity & Strength):',
+        footer_desc: 'Natural biocosmetics created by indigenous youth from Infierno, Madre de Dios, Peru.',
+        footer_contact: 'Official Contact',
+        footer_nav: 'Other Projects',
+        modal_title: 'Your Ebio Cart',
+        cart_empty: 'Your cart is empty. Add botanical products from the catalog!',
+        cart_total: 'Estimated Total:',
+        btn_send_wa: 'Order via WhatsApp (+51 993013417)',
+        toast_added: 'Item added to your order!',
+        wa_greeting: 'Hello EBIO team! I would like to place an order for:'
+      },
+      fr: {
+        topbar_title: '🌿 <strong>Ebio:</strong> Sagesse botanique de la <strong>Communauté Autochtone d\'Infierno</strong> · Pérou',
+        nav_origin: 'Infierno · Madre de Dios',
+        nav_products: 'Produits',
+        nav_ingredients: 'Ingrédients',
+        nav_roots: 'Identité Ese Eja',
+        nav_impact: 'Durabilité',
+        nav_whatsapp: 'WhatsApp (+51 993013417)',
+        hero_badge: 'Cosmovision Ese Eja · Infierno',
+        hero_title: 'Le pouvoir régénérant de la <span class="text-ebio-red underline decoration-ebio-yellow decoration-4 underline-offset-8">forêt vivante</span> sur votre peau.',
+        hero_desc: '<strong>EBIO</strong> signifie <em>"Forêt"</em> ou <em>"Nature"</em> en langue autochtone <strong>Ese Eja</strong>. Nous créons des soins cosmétiques à base de <strong>Sang-de-Dragon, Capirona et Copaiba</strong> récoltés de façon durable.',
+        prop_cicatrizante: 'Cicatrisant & Régénérant',
+        ing_sangre: 'Sang-de-Dragon',
+        prop_aclarante: 'Éclaircissant & Tenseur',
+        ing_capirona: 'Écorce de Capirona',
+        prop_hidratante: 'Hydratation Intense',
+        ing_copaiba: 'Huile de Copaiba',
+        btn_explore: 'Découvrir le Catalogue',
+        btn_whatsapp: 'WhatsApp +51 993013417',
+        badge_official: 'Identité Officielle Ese Eja',
+        badge_subtitle: 'Savons et Crèmes Hydratantes Artisanales',
+        badge_colors: 'Jaune · Rouge · Noir',
+        strip_banner: '∿∿∿ Motifs Géométriques Ese Eja · Infierno ∿∿∿',
+        sec_ing_subtitle: 'Médecine & Cosmétique de la Terre',
+        sec_ing_title: 'Trois trésors botaniques pour votre bien-être',
+        sec_ing_desc: 'Récoltés sans abattre d\'arbres au cœur de la forêt primaire de Madre de Dios.',
+        ing1_tag: 'Résine Sacrée',
+        ing1_name: 'Sang-de-Dragon (Croton lechleri)',
+        ing1_desc: 'Sève rouge légendaire qui stimule le collagène, accélère la cicatrisation cutanée et protège l\'épiderme.',
+        ing2_tag: 'Écorce Régénératrice',
+        ing2_name: 'Capirona',
+        ing2_desc: 'L\'arbre qui renouvelle perpétuellement son écorce. Atténue les taches solaires et unifie le teint.',
+        ing3_tag: 'Baume Protecteur',
+        ing3_name: 'Huile de Copaiba',
+        ing3_desc: 'Baume apaisant anti-inflammatoire qui soulage les irritations et hydrate la peau en profondeur.',
+        cat_tag: 'Soins Botaniques',
+        cat_title: 'Catalogue Artisanal Ebio',
+        cat_subtitle: 'Composez votre commande et envoyez-la directement par WhatsApp.',
+        btn_add: 'Ajouter',
+        p1_badge: 'Régénérant',
+        p1_type: 'Savon Botanique',
+        p1_name: 'Savon Sang-de-Dragon (100g)',
+        p1_desc: 'Idéal pour peaux mixtes ou à tendance acnéique. Nettoyage purifiant et renouvellement cellulaire.',
+        p2_badge: 'Éclaircissant',
+        p2_type: 'Savon Botanique',
+        p2_name: 'Savon Visage Capirona (100g)',
+        p2_desc: 'Atténue les taches solaires et procure une peau douce et lumineuse.',
+        p3_badge: 'Hydratation',
+        p3_type: 'Crème Corporelle',
+        p3_name: 'Crème Corporelle Copaiba (200ml)',
+        p3_desc: 'Formule fluide et nourrissante à l\'huile pure de copaiba.',
+        p4_badge: 'Recommandé',
+        p4_type: 'Pack Bien-être',
+        p4_saving: 'Économisez S/ 5',
+        p4_name: 'Pack Duo Forêt Vivante',
+        p4_desc: '1 Savon artisanal au choix + 1 Crème corporelle de Copaiba 200ml.',
+        banner_wa_title: 'Service Personnalisé',
+        banner_wa_sub: 'Expéditions ou commandes en grande quantité ?',
+        banner_wa_desc: 'Contactez directement les jeunes producteurs sur WhatsApp : +51 993 013 417.',
+        btn_chat_wa: 'Écrire sur WhatsApp',
+        roots_badge: 'Infierno · Rivière Tambopata',
+        roots_title: 'Ebio : L\'âme de la forêt Ese Eja',
+        roots_p1: 'Au sein de la Communauté d\'Infierno, les jeunes perpétuent l\'harmonie avec la nature. Nos couleurs jaune, rouge et noir expriment notre identité ancestrale.',
+        roots_p2: 'Le jaune représente le soleil et la canopée ; le rouge la sève vivante ; et le noir les méandres de nos rivières sacrées.',
+        roots_box_title: 'Tracés Géométriques de Notre Identité',
+        trace1: '1. Zigzag (Chemin et Agilité) :',
+        trace2: '2. Ligne Ondulée (La Rivière Tambopata) :',
+        trace3: '3. Créneaux (Solidarité Communautaire) :',
+        footer_desc: 'Cosmétique naturelle de la Communauté Autochtone d\'Infierno, Madre de Dios, Pérou.',
+        footer_contact: 'Contact Officiel',
+        footer_nav: 'Autres Projets',
+        modal_title: 'Votre Panier Ebio',
+        cart_empty: 'Votre panier est vide. Choisissez vos produits dans le catalogue !',
+        cart_total: 'Total Estimé :',
+        btn_send_wa: 'Commander sur WhatsApp (+51 993013417)',
+        toast_added: 'Produit ajouté à votre commande !',
+        wa_greeting: 'Bonjour équipe EBIO ! Je souhaite commander ces produits naturels :'
+      },
+      zh: {
+        topbar_title: '🌿 <strong>Ebio:</strong> 源自秘鲁<strong>Infierno原住民社区</strong>的古老雨林植物护肤智慧',
+        nav_origin: 'Infierno · 马德雷德迪奥斯',
+        nav_products: '产品系列',
+        nav_ingredients: '核心成分',
+        nav_roots: 'Ese Eja文化',
+        nav_impact: '生态可持续',
+        nav_whatsapp: 'WhatsApp (+51 993013417)',
+        hero_badge: 'Ese Eja 原住民宇宙观 · Infierno',
+        hero_title: '来自<span class="text-ebio-red underline decoration-ebio-yellow decoration-4 underline-offset-8">亚马逊雨林</span>的天然修复奇迹。',
+        hero_desc: '<strong>EBIO</strong>在<strong>Ese Eja</strong>语言中意为<em>“森林”</em>或<em>“大自然”</em>。我们以可持续方式采集龙血树树脂、卡皮罗纳树皮与苦配巴香脂，由社区青年手工制作纯净护肤品。',
+        prop_cicatrizante: '天然愈合修复',
+        ing_sangre: '龙血树树脂',
+        prop_aclarante: '淡斑提亮紧致',
+        ing_capirona: '卡皮罗纳树皮',
+        prop_hidratante: '深层滋养舒缓',
+        ing_copaiba: '苦配巴香脂',
+        btn_explore: '探索产品目录',
+        btn_whatsapp: 'WhatsApp 993013417',
+        badge_official: 'Ese Eja 官方文化认证',
+        badge_subtitle: '天然草本手工皂与身体滋润乳霜',
+        badge_colors: '黄 · 红 · 黑',
+        strip_banner: '∿∿∿ Ese Eja 传统几何图腾 · Infierno 社区 ∿∿∿',
+        sec_ing_subtitle: '大地医典与纯净美学',
+        sec_ing_title: '呵护肌肤的三大亚马逊雨林守护者',
+        sec_ing_desc: '采用对生态零伤害的古法采收，保护原生态原始雨林不被砍伐。',
+        ing1_tag: '神圣树脂',
+        ing1_name: '龙血树脂 (Croton lechleri)',
+        ing1_desc: '亚马逊传奇的天然红色树脂，在肌肤表层形成透气保护膜，促进胶原蛋白再生，舒缓修护受损肌肤。',
+        ing2_tag: '自新之树',
+        ing2_name: '卡皮罗纳 (Capirona)',
+        ing2_desc: '能持续蜕皮新生的神树。其提取物有助于淡化日晒暗沉，均匀肤色，提升面部自然光泽。',
+        ing3_tag: '森林甘露',
+        ing3_name: '苦配巴油 (Copaiba)',
+        ing3_desc: '温和抗炎舒缓的珍贵油质，深层滋养干燥与敏感肌，维持肌肤整日丝滑柔润。',
+        cat_tag: '纯净植物护肤',
+        cat_title: 'Ebio 手工产品目录',
+        cat_subtitle: '选择心仪产品，一键发送至官方 WhatsApp 快速订购。',
+        btn_add: '加入订单',
+        p1_badge: '细胞修护',
+        p1_type: '草本洁肤皂',
+        p1_name: '龙血树修复手工皂 (100g)',
+        p1_desc: '适合混合型或痘痘肌肤，深层洁净并辅助皮肤自我修护。',
+        p2_badge: '匀净焕亮',
+        p2_type: '草本洁肤皂',
+        p2_name: '卡皮罗纳焕颜皂 (100g)',
+        p2_desc: '温和改善暗沉与色斑，洗后肌肤清爽透亮不紧绷。',
+        p3_badge: '长效保湿',
+        p3_type: '身体乳霜',
+        p3_name: '苦配巴滋润身体霜 (200ml)',
+        p3_desc: '轻盈不油腻的滋养配方，富含纯天然苦配巴精油，长效舒缓干燥。',
+        p4_badge: '特别推荐',
+        p4_type: '礼盒双件套',
+        p4_saving: '立省 S/ 5',
+        p4_name: '活林愈肤双件套 (手工皂 + 乳霜)',
+        p4_desc: '任选1款草本皂 + 1瓶苦配巴身体霜 (200ml)。',
+        banner_wa_title: '专属客服',
+        banner_wa_sub: '需要批量团购或咨询定制配送？',
+        banner_wa_desc: '欢迎直接联系我们社区官方 WhatsApp: +51 993 013 417。',
+        btn_chat_wa: '联系 993013417',
+        roots_badge: 'Infierno 社区 · 坦博帕塔河畔',
+        roots_title: 'Ebio: Ese Eja 森林的精神脉搏',
+        roots_p1: '在Infierno社区，青年一代与雨林共荣。我们的黄、红、黑色彩与几何线条代表着古老的智慧传承。',
+        roots_p2: '黄色象征阳光与树冠生机；红色代表疗愈身心的生命树脂；黑色则是亚马逊曲折河流与先祖足迹。',
+        roots_box_title: '几何图腾文化寓意',
+        trace1: '1. 锯齿折线 (雨林林道与敏捷活力):',
+        trace2: '2. 柔和波浪 (孕育生命的坦博帕塔河):',
+        trace3: '3. 城堞方纹 (团结坚韧的社区力量):',
+        footer_desc: '秘鲁马德雷德迪奥斯 Infierno 原住民青年倾心打造的自然美护品牌。',
+        footer_contact: '官方联系方式',
+        footer_nav: '合作项目',
+        modal_title: '您的 Ebio 订购清单',
+        cart_empty: '您的清单为空。请从目录中选择心仪的草本护肤品！',
+        cart_total: '预估总额：',
+        btn_send_wa: '通过 WhatsApp 确认订购 (993013417)',
+        toast_added: '已加入您的订购清单！',
+        wa_greeting: '您好，EBIO 团队！我想订购以下天然雨林护肤品：'
+      }
+    };
+
+    let currentLang = 'es';
+    let currentLangData = translations.es;
+    let cart = [];
+
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+      currentLangData = translations[lang];
+
+      // Actualizar botones de idioma
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('lang-active'));
+      document.getElementById(`lang-${lang}`).classList.add('lang-active');
+
+      // Traducir elementos con data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (currentLangData[key]) {
+          el.innerHTML = currentLangData[key];
+        }
+      });
+
+      updateCartUI();
+    }
+
+    function addToCart(title, price) {
+      const existing = cart.find(item => item.price === price && (item.title === title || item.basePrice === price));
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ title, price, quantity: 1, basePrice: price });
+      }
+      updateCartUI();
+      showToast(currentLangData.toast_added || '¡Agregado!');
+    }
+
+    function changeQuantity(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+      document.getElementById('cartCountBadge').textContent = totalCount;
+      document.getElementById('floatingBadge').textContent = totalCount;
+      document.getElementById('cartTotalText').textContent = `S/ ${totalPrice.toFixed(2)}`;
+
+      const container = document.getElementById('cartItemsContainer');
+      if (cart.length === 0) {
+        container.innerHTML = `<p class="text-center text-stone-400 text-xs py-6">${currentLangData.cart_empty}</p>`;
+      } else {
+        container.innerHTML = cart.map((item, idx) => `
+          <div class="flex items-center justify-between p-2.5 bg-stone-50 rounded-xl border border-stone-200">
+            <div class="flex-1 pr-2">
+              <span class="text-xs font-bold text-stone-900 block leading-tight">${item.title}</span>
+              <span class="text-xs text-ebio-red font-semibold">S/ ${(item.price * item.quantity).toFixed(2)}</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button onclick="changeQuantity(${idx}, -1)" class="w-6 h-6 rounded bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs font-bold flex items-center justify-center">-</button>
+              <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
+              <button onclick="changeQuantity(${idx}, 1)" class="w-6 h-6 rounded bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs font-bold flex items-center justify-center">+</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function toggleCartModal() {
+      document.getElementById('cartModal').classList.toggle('hidden');
+    }
+
+    function sendOrderToWhatsApp() {
+      if (cart.length === 0) {
+        alert(currentLangData.cart_empty);
+        return;
+      }
+
+      let message = `${currentLangData.wa_greeting}%0A%0A`;
+      let total = 0;
+      cart.forEach((item) => {
+        const sub = item.price * item.quantity;
+        total += sub;
+        message += `▪ *${item.quantity}x* ${encodeURIComponent(item.title)} - S/ ${sub.toFixed(2)}%0A`;
+      });
+
+      message += `%0A💰 *Total: S/ ${total.toFixed(2)}*%0A%0A📍 Por favor confírmenme disponibilidad para coordinar la entrega. ¡Muchas gracias!`;
+
+      // Número oficial solicitado por el equipo de EBIO:
+      const phone = "51993013417";
+      window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    }
+
+    function showToast(msg) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed top-20 right-4 bg-ebio-black text-white text-xs font-bold px-4 py-2 rounded-full shadow-2xl z-50 border border-ebio-yellow animate-bounce';
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2200);
+    }
+  </script>
+</body>
+</html>

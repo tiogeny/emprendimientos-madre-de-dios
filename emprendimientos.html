@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Emprendimientos Juveniles de Madre de Dios | EBIO & NII MEKEN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .lang-active {
+      background-color: #10B981 !important;
+      color: #000000 !important;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-stone-950 text-stone-100 font-sans min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+
+  <!-- Header -->
+  <header class="border-b border-stone-800 py-4 px-4">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+      <div>
+        <span class="text-[11px] font-bold uppercase tracking-widest text-emerald-400" data-i18n="tag">Madre de Dios · Juventud Amazónica</span>
+        <h1 class="text-xl sm:text-2xl font-extrabold text-white" data-i18n="title">Emprendimientos Comunitarios</h1>
+      </div>
+      
+      <!-- Idiomas -->
+      <div class="flex items-center gap-1 bg-stone-900 border border-stone-700 rounded-full p-1 text-xs">
+        <button onclick="setLang('es')" id="btn-es" class="lang-btn lang-active px-3 py-1 rounded-full transition-all">🇵🇪 ES</button>
+        <button onclick="setLang('en')" id="btn-en" class="lang-btn px-3 py-1 rounded-full hover:text-emerald-400 transition-all">🇬🇧 EN</button>
+        <button onclick="setLang('fr')" id="btn-fr" class="lang-btn px-3 py-1 rounded-full hover:text-emerald-400 transition-all">🇫🇷 FR</button>
+        <button onclick="setLang('zh')" id="btn-zh" class="lang-btn px-3 py-1 rounded-full hover:text-emerald-400 transition-all">🇨🇳 中文</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Showcase -->
+  <main class="max-w-5xl mx-auto px-4 py-8 sm:py-12 flex-1 w-full flex flex-col justify-center">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight" data-i18n="subtitle">Dos comunidades, un mismo orgullo amazónico</h2>
+      <p class="text-stone-400 text-xs sm:text-sm mt-2" data-i18n="desc">Toca cada tarjeta para abrir su catálogo interactivo optimizado para celular con pedidos directos a su WhatsApp oficial.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      
+      <!-- Card EBIO -->
+      <div class="bg-gradient-to-b from-stone-900 to-stone-900/90 rounded-3xl p-6 sm:p-8 border-2 border-amber-500/30 hover:border-amber-400 transition-all duration-300 shadow-2xl flex flex-col justify-between relative overflow-hidden">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-amber-400/10 text-amber-300 border border-amber-400/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase" data-i18n="ebio_community">Comunidad Nativa de Infierno</span>
+            <span class="text-xs text-stone-400 font-mono">Ese Eja</span>
+          </div>
+
+          <div class="flex items-center gap-4 mb-5">
+            <img src="ebio/assets/logo.jpg" alt="Logo EBIO" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border-2 border-amber-400 shadow-lg">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white">EBIO</h3>
+              <p class="text-xs text-amber-400 font-bold uppercase tracking-wider" data-i18n="ebio_subtitle">Biocosmética Ancestral</p>
+              <div class="flex items-center gap-1.5 mt-1 text-[11px] text-stone-300">
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-stone-900 border border-white"></span>
+                <span class="text-[10px] text-stone-400 ml-1" data-i18n="ebio_colors">Amarillo · Rojo · Negro</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed mb-4" data-i18n="ebio_desc">
+            Jabones y cremas corporales hidratantes a base de <strong>Sangre de Grado, Capirona y Copaiba</strong>.
+          </p>
+
+          <div class="p-3 bg-stone-950/60 rounded-xl border border-stone-800 text-xs text-stone-300 mb-6 flex items-center justify-between">
+            <span>📱 WhatsApp Oficial:</span>
+            <a href="https://wa.me/51993013417" class="text-emerald-400 font-bold hover:underline">+51 993 013 417</a>
+          </div>
+        </div>
+
+        <a href="ebio/index.html" class="w-full bg-amber-400 hover:bg-amber-300 text-stone-950 font-extrabold py-3.5 rounded-2xl text-center text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 transition-all">
+          <span data-i18n="btn_open_ebio">Abrir Web de EBIO</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Card NII MEKEN -->
+      <div class="bg-gradient-to-b from-stone-900 to-stone-900/90 rounded-3xl p-6 sm:p-8 border-2 border-orange-500/30 hover:border-orange-400 transition-all duration-300 shadow-2xl flex flex-col justify-between relative overflow-hidden">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-orange-400/10 text-orange-300 border border-orange-400/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase" data-i18n="meken_community">Comunidad Nativa de Tres Islas</span>
+            <span class="text-xs text-stone-400 font-mono">Shipibo</span>
+          </div>
+
+          <div class="flex items-center gap-4 mb-5">
+            <img src="nii-meken/assets/logo.jpg" alt="Logo Nii Meken" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border-2 border-orange-400 shadow-lg">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white">NII MEKEN</h3>
+              <p class="text-xs text-orange-400 font-bold uppercase tracking-wider" data-i18n="meken_subtitle">Naturaleza en Mano</p>
+              <span class="text-[10px] text-stone-400 block mt-1" data-i18n="meken_lines">Cosmética · Biojoyería · Polos</span>
+            </div>
+          </div>
+
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed mb-4" data-i18n="meken_desc">
+            Jabones botánicos de <strong>Cacao, Coco y Uña de Gato</strong>, <strong>biojoyería de semillas nativas</strong> y <strong>polos de identidad</strong>.
+          </p>
+
+          <div class="p-3 bg-stone-950/60 rounded-xl border border-stone-800 text-xs text-stone-300 mb-6 flex items-center justify-between">
+            <span>📱 WhatsApp Oficial:</span>
+            <a href="https://wa.me/51986938030" class="text-emerald-400 font-bold hover:underline">+51 986 938 030</a>
+          </div>
+        </div>
+
+        <a href="nii-meken/index.html" class="w-full bg-orange-500 hover:bg-orange-400 text-white font-extrabold py-3.5 rounded-2xl text-center text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 transition-all">
+          <span data-i18n="btn_open_meken">Abrir Web de NII MEKEN</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-stone-800 py-4 px-4 text-center text-xs text-stone-500">
+    Desarrollado con orgullo para las juventudes de Infierno y Tres Islas · Madre de Dios, Perú
+  </footer>
+
+  <script>
+    const hubI18n = {
+      es: {
+        tag: 'Madre de Dios · Juventud Amazónica',
+        title: 'Emprendimientos Comunitarios',
+        subtitle: 'Dos comunidades, un mismo orgullo amazónico',
+        desc: 'Toca cada tarjeta para abrir su catálogo interactivo optimizado para celular con pedidos directos a su WhatsApp oficial.',
+        ebio_community: 'Comunidad Nativa de Infierno',
+        ebio_subtitle: 'Biocosmética Ancestral',
+        ebio_colors: 'Amarillo · Rojo · Negro',
+        ebio_desc: 'Jabones y cremas corporales hidratantes a base de Sangre de Grado, Capirona y Copaiba.',
+        btn_open_ebio: 'Abrir Web de EBIO',
+        meken_community: 'Comunidad Nativa de Tres Islas',
+        meken_subtitle: 'Naturaleza en Mano',
+        meken_lines: 'Cosmética · Biojoyería · Polos',
+        meken_desc: 'Jabones botánicos de Cacao, Coco y Uña de Gato, biojoyería de semillas nativas y polos de identidad.',
+        btn_open_meken: 'Abrir Web de NII MEKEN'
+      },
+      en: {
+        tag: 'Madre de Dios · Amazonian Youth',
+        title: 'Community Indigenous Enterprises',
+        subtitle: 'Two communities, one shared rainforest pride',
+        desc: 'Tap each card to open its mobile-optimized interactive catalog with direct ordering via official WhatsApp.',
+        ebio_community: 'Infierno Indigenous Community',
+        ebio_subtitle: 'Ancestral Biocosmetics',
+        ebio_colors: 'Yellow · Red · Black',
+        ebio_desc: 'Artisanal soaps and moisturizing body creams made with Dragon\'s Blood, Capirona bark, and Copaiba balsam.',
+        btn_open_ebio: 'Open EBIO Website',
+        meken_community: 'Tres Islas Indigenous Community',
+        meken_subtitle: 'Nature in Hand',
+        meken_lines: 'Cosmetics · Bio-Jewelry · Apparel',
+        meken_desc: 'Wild cacao and cat\'s claw botanical soaps, handcrafted native seed jewelry, and community apparel.',
+        btn_open_meken: 'Open NII MEKEN Website'
+      },
+      fr: {
+        tag: 'Madre de Dios · Jeunesse Amazonienne',
+        title: 'Entreprises Communautaires Autochtones',
+        subtitle: 'Deux communautés, une même fierté amazonienne',
+        desc: 'Touchez chaque carte pour ouvrir son catalogue interactif optimisé pour mobile avec commande directe sur WhatsApp.',
+        ebio_community: 'Communauté Autochtone d\'Infierno',
+        ebio_subtitle: 'Biocosmétique Ancestrale',
+        ebio_colors: 'Jaune · Rouge · Noir',
+        ebio_desc: 'Savons et crèmes hydratantes à base de Sang-de-Dragon, écorce de Capirona et huile de Copaiba.',
+        btn_open_ebio: 'Ouvrir le Site EBIO',
+        meken_community: 'Communauté Autochtone Tres Islas',
+        meken_subtitle: 'La Nature en Main',
+        meken_lines: 'Cosmétique · Bijoux · Mode',
+        meken_desc: 'Savons botaniques au cacao sauvage et griffe de chat, bio-bijoux en graines et vêtements communautaires.',
+        btn_open_meken: 'Ouvrir le Site NII MEKEN'
+      },
+      zh: {
+        tag: '秘鲁马德雷德迪奥斯 · 雨林青年文创',
+        title: '原住民青年共创品牌门户',
+        subtitle: '两个社区，同一种亚马逊雨林骄傲',
+        desc: '点击卡片即可在手机上浏览交互式产品目录，并通过官方 WhatsApp 快捷订购。',
+        ebio_community: 'Infierno 原住民社区',
+        ebio_subtitle: '古法雨林植物护肤',
+        ebio_colors: '黄 · 红 · 黑',
+        ebio_desc: '以龙血树脂、卡皮罗纳树皮与苦配巴香脂精心制作的手工皂与滋润身体霜。',
+        btn_open_ebio: '打开 EBIO 官方主页',
+        meken_community: 'Tres Islas 原住民社区',
+        meken_subtitle: '手中的自然',
+        meken_lines: '草本美护 · 植物籽饰品 · 文化T恤',
+        meken_desc: '野生可可与猫爪草天然冷皂、原生态种子手工饰品及社区文化T恤。',
+        btn_open_meken: '打开 NII MEKEN 官方主页'
+      }
+    };
+
+    function setLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('lang-active'));
+      document.getElementById(`btn-${lang}`).classList.add('lang-active');
+      const data = hubI18n[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (data[k]) el.innerHTML = data[k];
+      });
+    }
+  </script>
+</body>
+</html>
